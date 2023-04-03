@@ -1,0 +1,2 @@
+C:\user\Lecture05\x64\Debug\Lecture05.exe
+D:\Lecture05\x64\Debug\Lecture05.exe

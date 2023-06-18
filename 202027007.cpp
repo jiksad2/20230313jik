@@ -12,7 +12,7 @@ void SetConsoleColor(int color)
 const int SCREEN_WIDTH = 50;
 const int SCREEN_HEIGHT = 25;
 
-const int MAX_LENGTH = 50;
+const int MAX_LENGTH = 100;
 
 enum Direction
 {
@@ -219,7 +219,7 @@ void Update(Game& game)
 
         if (game.speed < 1000)
         {
-            game.speed = 300;
+            game.speed = 250;
         }
         
         game.fruit.position = { rand() % SCREEN_WIDTH, rand() % SCREEN_HEIGHT };
@@ -249,10 +249,11 @@ void PlaySnakeGame()
 
     SetConsoleColor(14);
     std::cout << "\n  게임 오버 " << std::endl;
-    std::cout << "  최종 점수 : " << game.score << "점입니다!"<<std::endl;
+    std::cout << "  당신의 최종 점수 : " << game.score << "점입니다!"<<std::endl;
     SetConsoleColor(7);
 
-    std::cout << "\n\n 게임을 다시 시작하겠습니까? (y/n): ";
+    std::cout << "\n\n 게임을 다시 시작하겠습니까?";
+    std::cout << "\n 다시 시작하려면 y, 아니면 아무 키나 누르세요. ";
     char input;
     std::cin >> input;
 
@@ -260,18 +261,18 @@ void PlaySnakeGame()
     {
         PlaySnakeGame();
     }
-    else 
+    else
     {
         ExitGame();
     }
 }
 
-void DisplayGameDescription()
+void GameDescription()
 {
     std::cout << " === 게임 설명 ===" << std::endl;
-    std::cout << " wasd로 잘 하시면 됩니다." << std::endl;
+    std::cout << " wasd로 조작하시면 됩니다." << std::endl;
 
-    std::cout << "그럼 게임을 시작하시겠습니까? (y/n): ";
+    std::cout << "그럼 게임을 시작하시겠습니까? (y): ";
 
     char choice;
     std::cin >> choice;
@@ -305,7 +306,7 @@ int main()
         PlaySnakeGame();
         break;
     case '2':
-        DisplayGameDescription();
+        GameDescription();
         break;
     case '3':
         ExitGame();

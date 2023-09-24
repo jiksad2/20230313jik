@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>202027007하이브리드앱</title>
+</head>
+<body>
+    <style>        
+    .container {
+            display: flex;
+            flex-direction: row; /* 영역 2와 영역 3를 가로로 배치 */
+        }   
+        #영역1 {
+            width: 100%;
+            height: 100px;
+            border: 2px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        #영역2 {
+            margin-left: 0;
+            padding: 10px;
+        }
+
+        #영역3 {
+            top: 0;
+            margin-left: 10%;
+            height: 200px;
+            padding: 10px;
+        }
+        #영역2, #영역3 {
+            flex: 1;
+        }
+    </style>
+    <div id="영역1">
+        <input type="text" id="아이디" placeholder="아이디">
+        <button id="로그인버튼" onclick="로그인()">로그인</button>
+        
+    </div>
+
+    <div id="영역2">
+        <button onclick="출력(1)">버튼1</button>
+        <button onclick="출력(2)">버튼2</button>
+        <button onclick="훔치기(3)">버튼3</button>
+    </div>
+
+    <div id="영역3">
+        <p id="글내용">영역3 내용이 여기에 표시됩니다.</p>
+        <img src="images/카멘.png" alt="">
+    </div>
+
+    <script>
+        let 아이디_저장;
+        let 닉네임_저장;
+        let 대표사진_저장;
+        let 현재_버튼_내용 = ["202027007_이병직입니다", "살려주세요 교수님", ""];
+
+        function 로그인() {
+            아이디_저장 = document.getElementById("아이디").value;
+            닉네임_저장 = "이병직";
+            대표사진_저장 = "카멘.png";
+            document.getElementById("로그인버튼").textContent = "로그아웃";
+            document.getElementById("카멘.png").src = Images/카멘.png;
+        }
+
+        function 로그아웃() {
+            아이디_저장 = "jblee01020";
+            닉네임_저장 = "이병직";
+            대표사진_저장 = "카멘.png";
+            document.getElementById("로그아웃버튼").textContent = "로그인";
+            document.getElementById("대표사진").src = Images/카멘.png;
+        }
+
+        function 출력(버튼번호) {
+            if (버튼번호 >= 1 && 버튼번호 <= 2) {
+                document.getElementById("글내용").textContent = 현재_버튼_내용[버튼번호 - 1];
+            }
+        }
+
+        function 훔치기(버튼번호) {
+            if (현재_버튼_내용[버튼번호 - 1] === "") {
+                alert("내용이 없습니다.");
+            } else {
+                현재_버튼_내용[버튼번호 - 1] = "";
+                document.getElementById("글내용").textContent = "저장되었습니다.";
+            }
+        }
+
+        function 저장하기(버튼번호) {
+            if (현재_버튼_내용[버튼번호 - 1] === "") {
+                alert("현재 버튼의 내용이 없어 복사할 수 없습니다.");
+            } else {
+                현재_버튼_내용[2] = 현재_버튼_내용[버튼번호 - 1];
+                현재_버튼_내용[버튼번호 - 1] = "";
+                document.getElementById("글내용").textContent = "저장되었습니다.";
+            }
+        }
+
+        function 비어있는버튼_처리() {
+            for (let i = 0; i < 현재_버튼_내용.length; i++) {
+                if (현재_버튼_내용[i] === "") {
+                    현재_버튼_내용[i] = 현재_버튼_내용[2];
+                    현재_버튼_내용[2] = "";
+                    document.getElementById("글내용").textContent = "저장되었습니다.";
+                    return;
+                }
+            }
+            alert("모든 버튼에 내용이 있습니다.");
+        }
+    </script>
+</body>
+</html>
